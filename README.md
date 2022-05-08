@@ -1,58 +1,38 @@
-## Micronaut 3.4.2 Documentation
+## JAK #1 CloudNative Micronaut
 
-- [User Guide](https://docs.micronaut.io/3.4.2/guide/index.html)
-- [API Reference](https://docs.micronaut.io/3.4.2/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/3.4.2/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
+### Running
 
-- [Shadow Gradle Plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
-- [Jib Gradle Plugin](https://plugins.gradle.org/plugin/com.google.cloud.tools.jib)
-## Feature reactor documentation
+Start service with:
 
-- [Micronaut Reactor documentation](https://micronaut-projects.github.io/micronaut-reactor/snapshot/guide/index.html)
+> ./gradlew run
 
+Entrypoint class is *com.photomath.roundtable.Application*
 
-## Feature http-client documentation
+# Configuration
 
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
+Micronaut standard configuration is src/main/resources/application.yml
 
+Sorting service URL endpoint list can be passed in environment variable *SORTING_URLS*.
+URLs should be comma separated i.e. SORTING_URLS=http://ss1/v1/,http://ss2/v1/
 
-## Feature management documentation
+### Building
 
-- [Micronaut Management documentation](https://docs.micronaut.io/latest/guide/index.html#management)
+> ./gradlew assemble
 
+### Running Fat JAR
 
-## Feature openapi documentation
+> java -jar "build/libs/JAK Micronaut-0.1-all.jar"
 
-- [Micronaut OpenAPI Support documentation](https://micronaut-projects.github.io/micronaut-openapi/latest/guide/index.html)
+### Stress test
 
-- [https://www.openapis.org](https://www.openapis.org)
+Sample locust stress test file is included. Start test with:
 
+> locust --headless -t 15m -u 200 -r 10 -H http://localhost:8080
 
-## Feature dekorate-openshift documentation
+### Prometheus Metrics
 
-- [Micronaut Dekorate Openshift Support documentation](https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/index.html)
+Prometheus metrics are provided at http://localhost:8080/prometheus
 
-- [https://github.com/dekorateio/dekorate#kubernetes](https://github.com/dekorateio/dekorate#kubernetes)
+### Logging
 
-
-## Feature micronaut-aot documentation
-
-- [Micronaut AOT documentation](https://micronaut-projects.github.io/micronaut-aot/latest/guide/)
-
-
-## Feature dekorate-prometheus documentation
-
-- [Micronaut Dekorate Prometheus Support documentation](https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/index.html)
-
-- [https://github.com/dekorateio/dekorate#prometheus-annotations](https://github.com/dekorateio/dekorate#prometheus-annotations)
-
-
-## Feature swagger-ui documentation
-
-- [Micronaut Swagger UI documentation](https://micronaut-projects.github.io/micronaut-openapi/latest/guide/index.html)
-
-- [https://swagger.io/tools/swagger-ui/](https://swagger.io/tools/swagger-ui/)
-
-
+For logging, we use logback (src/main/resources/_logback.xml), writing to *roundtable.log* and standard output.  
