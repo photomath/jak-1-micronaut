@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.photomath.roundtable
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle_kotlin
+features: [annotation-api, app-name, dekorate-openshift, dekorate-prometheus, graalvm, gradle, http-client, jackson-databind, java, java-application, jib, junit, logback, management, micrometer, micrometer-prometheus, micronaut-aot, micronaut-build, netty-server, openapi, reactor, reactor-http-client, readme, shade, swagger-ui, yaml]

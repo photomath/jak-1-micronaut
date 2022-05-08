@@ -1,0 +1,37 @@
+micronaut:
+  application:
+    name: roundTable
+  http:
+    services:
+      sorting:
+        # Specified through environment variable SORTING_URLS
+        # url: http://localhost:8080/v1/sorting
+        read-timeout: 60s
+        pool:
+          enabled: true
+  server:
+      use-native-transport: true
+  metrics:
+    enabled: true
+    export:
+      prometheus:
+        enabled: true
+        descriptions: true
+        step: PT1M
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      swagger-ui:
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
+
+netty:
+  default:
+    allocator:
+      max-order: 3
+
+endpoints:
+  prometheus:
+    sensitive: false
