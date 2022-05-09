@@ -21,19 +21,18 @@ import java.util.Optional;
 
 @OpenAPIDefinition(
         info = @Info(
-                title = "RoundTable",
-                version = "0.0"
+                title = "Roundtable Micronaut"
         )
 )
 @OpenshiftApplication(
-        name = "RoundTable",
+        name = "roundtable-micronaut",
         labels = {
-                @Label(key = "app", value = "RoundTable"),
-                @Label(key = "basePath", value = "/v1")
+                @Label(key = "app", value = "roundtable-micronaut"),
         },
         ports = @Port(name = "http", containerPort = 8080),
         livenessProbe = @Probe(httpActionPath = "/health/liveness", initialDelaySeconds = 5, timeoutSeconds = 3, failureThreshold = 10),
         readinessProbe = @Probe(httpActionPath = "/health/readiness", initialDelaySeconds = 5, timeoutSeconds = 3, failureThreshold = 10)
+
 )
 @EnableServiceMonitor(path = "/prometheus")
 public class Application {

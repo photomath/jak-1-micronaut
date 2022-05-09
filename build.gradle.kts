@@ -55,7 +55,8 @@ java {
 tasks {
     jib {
         to {
-            image = "gcr.io/jak-1/jak-micronaut"
+            image = "vnesek/jak-1-micronaut"
+            tags = setOf("$version")
         }
     }
 }

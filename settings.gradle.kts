@@ -1,1 +1,1 @@
-rootProject.name="JAK Micronaut"
+rootProject.name="jak-1-micronaut"

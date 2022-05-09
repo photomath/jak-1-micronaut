@@ -6,7 +6,7 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>roundtable.log</file>
+        <file>/tmp/roundtable.log</file>
         <append>false</append>
         <encoder>
             <pattern>%msg %n</pattern>
