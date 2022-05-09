@@ -33,7 +33,8 @@ public class SortingController {
     }
 
     @Post(uri = "delegated/sorting")
-    public Mono<SortingResponse> sortingDelegated(@Valid @Body Sorting request) {
-        return sortingClient.sorting(request);
+    public void sortingDelegated(@Valid @Body Sorting request) {
+        sortingClient.sorting(request)
+                .subscribe();
     }
 }
