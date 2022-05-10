@@ -1,7 +1,9 @@
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import io.micronaut.gradle.docker.MicronautDockerfile
+
 plugins {
     id("io.micronaut.application") version "3.4.0"
     id("io.micronaut.aot") version "3.4.0"
-    id("com.google.cloud.tools.jib") version "3.2.1"
     id("com.github.ben-manes.versions") version "0.42.0"
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
@@ -53,11 +55,18 @@ java {
 }
 
 tasks {
-    jib {
-        to {
-            image = "vnesek/jak-1-micronaut"
-            tags = setOf("$version")
-        }
+    named<MicronautDockerfile>("dockerfile") {
+        // Uncomment when building dockerBuildNative
+        // baseImage.set("ghcr.io/graalvm/jdk:java17-22.1.0")
+    }
+
+    named<DockerBuildImage>("dockerBuild") {
+        images.add("ghcr.io/vnesek/jak-1-micronaut/rountable-micronaut:$version")
+    }
+
+    named<DockerBuildImage>("dockerBuildNative") {
+        images.add("ghcr.io/vnesek/jak-1-micronaut/rountable-micronaut-native:$version")
+
     }
 }
 
