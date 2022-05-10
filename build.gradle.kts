@@ -18,6 +18,7 @@ repositories {
 dependencies {
     annotationProcessor("io.dekorate:openshift-annotations")
     annotationProcessor("io.dekorate:prometheus-annotations")
+    annotationProcessor("io.micronaut.micrometer:micronaut-micrometer-annotation")
     annotationProcessor("io.micronaut.openapi:micronaut-openapi")
     annotationProcessor("io.micronaut:micronaut-http-validation")
     compileOnly("org.graalvm.nativeimage:svm")

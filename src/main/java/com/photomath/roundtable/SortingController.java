@@ -1,5 +1,6 @@
 package com.photomath.roundtable;
 
+import io.micrometer.core.annotation.Counted;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Post;
@@ -22,13 +23,14 @@ public class SortingController {
     }
 
     @Post(uri = "sorting")
+    @Counted(value = "demo_request_counter_total", description = "Number of sorting requests processed")
     public Mono<SortingResponse> sorting(@Valid @Body Sorting request) {
         return Mono.just(request.arraySize())
                 .doOnSubscribe(subscription -> log.info("Request received"))
-                .publishOn(Schedulers.parallel()) // (1)
-                .map(SortingServiceImpl::sorting) // (2)
+                .publishOn(Schedulers.parallel())
+                .map(SortingServiceImpl::sorting)
                 .doOnNext(time -> log.info("Sorting performed in {} ms", time))
-                .map(SortingResponse::new) // (3)
+                .map(SortingResponse::new)
                 .doOnNext(response -> log.info("Response sent"));
     }
 
