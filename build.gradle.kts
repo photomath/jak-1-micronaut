@@ -67,7 +67,6 @@ tasks {
 
     named<DockerBuildImage>("dockerBuildNative") {
         images.add("ghcr.io/vnesek/jak-1-micronaut/rountable-micronaut-native:$version")
-
     }
 }
 
